@@ -16,6 +16,11 @@ class Brain:
         self._end = end;
         self.props = props;
 
+    def parseNumber(self,numero):
+        temp = numero[0:2]+","+numero[2:4]+","+numero[4:6]+","+numero[6:8]+","+numero[8:10]+","+numero[10:12];
+        return temp;
+
+
     def melateAnalyzed(self):
         numerosList= list();
         #Connect to database
@@ -27,7 +32,7 @@ class Brain:
         db.__exit__();
         #load to Model
         for item in result:
-            model = NumerosModel(item[0],item[1],item[2],item[3]);
+            model = NumerosModel(item[0],self.parseNumber(str(item[1])),item[2],item[3]);
             self.logger.debug("Item :"+str(model));
             numerosList.append(model);
         self.numerosList = numerosList;
