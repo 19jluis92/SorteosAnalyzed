@@ -32,5 +32,5 @@ class Brain:
             numerosList.append(model);
         self.numerosList = numerosList;
         #TODO calculate here whaterever you want
-        
+
         self.logger.info("resultTest "+str(len(self.numerosList)));
