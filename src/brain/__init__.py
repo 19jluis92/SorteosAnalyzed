@@ -31,4 +31,6 @@ class Brain:
             self.logger.debug("Item :"+str(model));
             numerosList.append(model);
         self.numerosList = numerosList;
+        #TODO calculate here whaterever you want
+        
         self.logger.info("resultTest "+str(len(self.numerosList)));
