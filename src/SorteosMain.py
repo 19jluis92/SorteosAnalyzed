@@ -14,15 +14,15 @@ def loadProperties():
 
 def loggingDefinition():
     global logger;
-    if(configs.get("Log_Level").data=="info"):
+    if(configs.get("LOG_LEVEL").data=="info"):
         logLevel= 20;
-    elif(configs.get("Log_Level").data=="debug"):
+    elif(configs.get("LOG_LEVEL").data=="debug"):
         logLevel= 10;
-    elif(configs.get("Log_Level").data=="error"):
+    elif(configs.get("LOG_LEVEL").data=="error"):
         logLevel= 40;
     else:
         logLevel= 20;
-    logging.basicConfig(filename='sorteos.log', level=logLevel);
+    logging.basicConfig(filename='sorteos.log', level=logLevel, filemode=configs.get("LOG_MODE").data);
     logger = logging.getLogger('sorteosLogger');
     logger.setLevel(logLevel);
 
