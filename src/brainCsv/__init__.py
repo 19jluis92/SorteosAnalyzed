@@ -20,13 +20,15 @@ class BrainCSV:
 
     def loadCsvPandas(self):
         self.logger.info("CSV "+self.props.get("CSV").data);
-        numeros = pd.read_csv(self.props.get("CSV").data)
-        return numeros
+        numeros = pd.read_csv(self.props.get("CSV").data);
+        # num_df.loc[num_df['a'] == 2]
+        #filter the last change of the rules start = datetime.datetime(2007, 12, 9), end = datetime.datetime.now()
+        return numeros.loc[numeros["CONCURSO"] >= 2088];
 
     def melateAnalyzedPandas(self):
         #ReadCSV example https://naps.com.mx/blog/3-ejemplos-explicados-de-machine-learning-en-python/
         datasetNumeros = self.loadCsvPandas();
-
+        print(len(datasetNumeros));
         #load to Model
         # for item in result:
         #     model = NumerosModel(item[0],item[1],item[2],item[3]);
@@ -51,5 +53,5 @@ class BrainCSV:
         modelo.fit(X=independientes, y=objetivos);
         #datasetNumeros[["prediccion"]] = modelo.predict(datos_numericos[independientes]);
         datasetNumeros[['R1','R2','R3','R4','R5','R6']] = modelo.predict(independientes)
-        print (datasetNumeros[["CONCURSO", "R1",'R2','R3','R4','R5','R6']].head())
+        print(datasetNumeros[["CONCURSO", "R1",'R2','R3','R4','R5','R6']].head())
         self.logger.info("Analyzed end ");
