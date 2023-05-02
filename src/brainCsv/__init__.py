@@ -24,7 +24,7 @@ class BrainCSV:
         return numeros
 
     def melateAnalyzedPandas(self):
-        #ReadCSV
+        #ReadCSV example https://naps.com.mx/blog/3-ejemplos-explicados-de-machine-learning-en-python/
         datasetNumeros = self.loadCsvPandas();
 
         #load to Model
