@@ -21,8 +21,9 @@ class Brain:
         return temp;
 
 
-    def melateAnalyzed(self):
+    def melateAnalyzedPandas(self):
         numerosList= list();
+        winnerList= list();
         #Connect to database
         db = database.Database(self.props.get("DBNAME").data,self.props.get("USERDB").data,self.props.get("PASSDB").data);
         #Execute Query to read numeros
@@ -33,6 +34,7 @@ class Brain:
         #load to Model
         for item in result:
             model = NumerosModel(item[0],self.parseNumber(str(item[1])),item[2],item[3]);
+            winnerList.append(self.parseNumber(str(item[1])));
             self.logger.debug("Item :"+str(model));
             numerosList.append(model);
         self.numerosList = numerosList;

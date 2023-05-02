@@ -1,5 +1,6 @@
 import logging
 import brain
+import brainCsv
 from jproperties import Properties
 
 global level;
@@ -27,8 +28,12 @@ def loggingDefinition():
 
 def executeBrain():
     logger.info('Calling Brain');
-    executor = brain.Brain(configs);
-    executor.melateAnalyzed();
+    if(configs.get("DATASET").data=="1"):
+        executor = brain.Brain(configs);
+        executor.melateAnalyzed();
+    elif(configs.get("DATASET").data=="2"):
+        executor = brainCsv.BrainCSV(configs);
+        executor.melateAnalyzedPandas();
 
 # args = sys.argv[1:] parameter from system
 def main():
