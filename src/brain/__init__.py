@@ -31,7 +31,7 @@ class Brain:
         db = database.Database(self.props.get("DBNAME").data,self.props.get("USERDB").data,self.props.get("PASSDB").data);
         #Execute Query to read numeros
         result = db.queryMany("Select *  FROM sorteos.numeros where sorteoId = "+str(self._sorteoId)+" and date >= '"
-                              +self._start.strftime("%Y-%m-%d")+"' and date <= '"+ self._end.strftime("%Y-%m-%d")+"'");
+                              +self._start.strftime("%Y-%m-%d")+"' and date <= '"+ self._end.strftime("%Y-%m-%d")+"'  order by numeroSorteo desc");
         #Close connection
         db.__exit__();
         #load to Model
@@ -47,7 +47,7 @@ class Brain:
         for item in result:
             numero = item[1];
             self.logger.debug("Item :"+str(numero));
-            pdList.append([item[0],numero[0:2], numero[2:4], numero[4:6], numero[6:8], numero[8:10], numero[10:12]]);
+            pdList.append([item[3],numero[0:2], numero[2:4], numero[4:6], numero[6:8], numero[8:10], numero[10:12]]);
             # winnerList.append(self.parseNumber(str(item[1])));
         #convert db information to pandas DataFrame
         #using PANDAS

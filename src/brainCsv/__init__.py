@@ -48,3 +48,4 @@ class BrainCSV:
         datasetNumeros[['R1','R2','R3','R4','R5','R6']] = modelo.predict(independientes)
         self.logger.info(datasetNumeros[["CONCURSO", "R1",'R2','R3','R4','R5','R6']].head())
         self.logger.info("Analyzed end ");
+        self.logger.info("resultTest "+str(len(datasetNumeros)));
