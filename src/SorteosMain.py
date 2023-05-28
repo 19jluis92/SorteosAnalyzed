@@ -30,7 +30,7 @@ def executeBrain():
     logger.info('Calling Brain');
     if(configs.get("DATASET").data=="1"):
         executor = brain.Brain(configs);
-        executor.melateAnalyzed();
+        executor.melateAnalyzedPandas();
     elif(configs.get("DATASET").data=="2"):
         executor = brainCsv.BrainCSV(configs);
         executor.melateAnalyzedPandas();
