@@ -1,1 +1,4 @@
 sorteos.log
+
+out/*
+**/__pycache__/**
