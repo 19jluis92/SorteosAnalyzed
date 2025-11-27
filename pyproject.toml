@@ -1,0 +1,13 @@
+[project]
+name = "sorteosanalyzed"
+version = "1.0.0"
+description = "Analizador de números Melate"
+authors = [
+    { name="Luis Velazquez" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

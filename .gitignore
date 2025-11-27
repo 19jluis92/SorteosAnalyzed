@@ -3,3 +3,4 @@ SorteosAnalyzed.iml
 
 out/*
 **/__pycache__/**
+*.pyc

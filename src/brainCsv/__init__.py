@@ -34,7 +34,7 @@ class BrainCSV:
         except Exception as e:
             self.logger.error(e);
             self.logger.info("CSV " + self.props.get("CSV").data);
-            numeros = pd.read_csv("../" + self.props.get("CSV").data);
+            numeros = pd.read_csv( self.props.get("CSV").data);
         # num_df.loc[num_df['a'] == 2]
         # filter the last change of the rules start = datetime.datetime(2007, 12, 9), end = datetime.datetime.now()
         return numeros.loc[numeros["CONCURSO"] >= int(self.props.get("FILTER").data)];

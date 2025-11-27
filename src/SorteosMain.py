@@ -9,7 +9,7 @@ global logger;
 
 configs = Properties();
 def loadProperties():
-    with open('../sorteos.properties', 'rb') as read_prop:
+    with open('sorteos.properties', 'rb') as read_prop:
         configs.load(read_prop);
 
 def loggingDefinition():
