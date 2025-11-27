@@ -30,10 +30,10 @@ def executeBrain():
     logger.info('Calling Brain');
     if(configs.get("DATASET").data=="1"):
         executor = brain.Brain(configs);
-        executor.melateAnalyzedPandas();
-    elif(configs.get("DATASET").data=="2"):
+        return executor.melateAnalyzedPandas();
+    else:
         executor = brainCsv.BrainCSV(configs);
-        executor.melateAnalyzedPandas();
+        return executor.melateAnalyzedPandas();
 
 # args = sys.argv[1:] parameter from system
 def main():

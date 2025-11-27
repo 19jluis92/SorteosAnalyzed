@@ -75,3 +75,4 @@ class Brain:
         self.logger.info("Analyzed end ");
 
         self.logger.info("resultTest "+str(len(pdList)));
+        return str(len(pdList));
