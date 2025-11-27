@@ -1,10 +1,9 @@
 import datetime
 import logging
-import pandas as pd
-import numpy as np
-from sklearn.linear_model import LinearRegression
 
-from brain.NumerosModel import NumerosModel
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LinearRegression
 
 
 class BrainCSV:
