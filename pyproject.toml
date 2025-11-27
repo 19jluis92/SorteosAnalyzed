@@ -1,13 +1,16 @@
 [project]
 name = "sorteosanalyzed"
-version = "1.0.0"
-description = "Analizador de números Melate"
-authors = [
-    { name="Luis Velazquez" }
-]
+version = "0.1.0"
+description = "Analizador melate"
+authors = [{ name="Luis" }]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+[project.urls]
+Homepage = "https://github.com/19jluis92/SorteosAnalyzed"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
