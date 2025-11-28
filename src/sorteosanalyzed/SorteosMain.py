@@ -40,7 +40,8 @@ def main():
     loadProperties();
     loggingDefinition();
     logger.info('STARTING SORTEOS');
-    executeBrain();
+    result = executeBrain();
+    print(result)
 
 if __name__ == "__main__":
     main();

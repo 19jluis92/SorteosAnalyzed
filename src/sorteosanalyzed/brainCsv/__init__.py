@@ -62,4 +62,4 @@ class BrainCSV:
         self.logger.info(datasetNumeros[["CONCURSO", "R1", 'R2', 'R3', 'R4', 'R5', 'R6']].head())
         self.logger.info("Analyzed end ");
         self.logger.info("resultTest " + str(len(datasetNumeros)));
-        return  str(len(datasetNumeros));
+        return str(int(datasetNumeros["R1"][0]))+" | "+str(int(datasetNumeros["R2"][0]))+" | "+str(int(datasetNumeros["R3"][0]))+" | "+str(int(datasetNumeros["R4"][0]))+" | "+str(int(datasetNumeros["R5"][0]))+" | "+str(int(datasetNumeros["R6"][0]));
