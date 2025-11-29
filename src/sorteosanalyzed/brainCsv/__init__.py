@@ -1,6 +1,9 @@
 import datetime
 import logging
-
+import ssl
+import pandas as pd
+import urllib.request
+import os
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
@@ -17,26 +20,52 @@ class BrainCSV:
         self.props = props;
 
     def downloadCSV(self):
-        urlStr = self.props.get("URL").data;
-        self.logger.info("URL " + urlStr);
-        url = (
-            urlStr
-        );
-        self.csv = url;
+        """Intenta descargar el CSV y guardarlo localmente."""
+        urlStr = self.props.get("URL").data
+        local_csv = self.props.get("CSV").data  # Ej: Melate.csv
+
+        self.logger.info("Intentando descargar: " + urlStr)
+
+        try:
+            # Crear contexto SSL sin verificación (porque el cert de Pronósticos está roto)
+            ssl_context = ssl._create_unverified_context()
+
+            response = urllib.request.urlopen(urlStr, context=ssl_context)
+            data = response.read()
+
+            # Guardar archivo local
+            with open(local_csv, "wb") as f:
+                f.write(data)
+
+            self.logger.info("CSV descargado y guardado como: " + local_csv)
+            return local_csv
+
+        except Exception as e:
+            self.logger.error(f"Error en descarga: {e}")
+            return None
 
     def loadCsvPandas(self):
 
-        try:
-            self.logger.info("DOWNLOAD CSV ");
-            self.downloadCSV();
-            numeros = pd.read_csv(self.csv,sep=",");
-        except Exception as e:
-            self.logger.error(e);
-            self.logger.info("CSV " + self.props.get("CSV").data);
-            numeros = pd.read_csv( self.props.get("CSV").data);
-        # num_df.loc[num_df['a'] == 2]
-        # filter the last change of the rules start = datetime.datetime(2007, 12, 9), end = datetime.datetime.now()
-        return numeros.loc[numeros["CONCURSO"] >= int(self.props.get("FILTER").data)];
+        local_csv = self.props.get("CSV").data  # Ej: Melate.csv
+
+        # 1. Intentar descargar el archivo
+        downloaded_file = self.downloadCSV()
+
+        # 2. Si se descargó, usarlo
+        if downloaded_file and os.path.exists(downloaded_file):
+            return pd.read_csv(downloaded_file)
+
+        # 3. Si no se descargó pero existe local
+        if os.path.exists(local_csv):
+            self.logger.info("Usando CSV local existente")
+            return pd.read_csv(local_csv)
+
+        # 4. Si no existe nada → error
+        raise FileNotFoundError(
+            f"No se pudo obtener el archivo CSV.\n"
+            f"- URL falló (certificado inválido)\n"
+            f"- Archivo local '{local_csv}' no existe."
+        )
 
     def melateAnalyzedPandas(self):
         # ReadCSV example https://naps.com.mx/blog/3-ejemplos-explicados-de-machine-learning-en-python/
